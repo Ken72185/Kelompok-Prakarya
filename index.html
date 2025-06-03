@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seleksi Kelompok Prakarya</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+  <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+    <h1 class="text-2xl font-bold mb-4 text-center">Kelompok Prakarya</h1>
+    <p class="mb-4 text-center text-gray-600">Masukkan nama kamu untuk cek apakah kamu terpilih!,(huruf depan pake capslock)</p>
+
+    <input id="namaInput" type="text" placeholder="Masukkan nama pendek" class="w-full border p-2 rounded mb-4" />
+
+    <button onclick="cekNama()" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+      Cek Sekarang
+    </button>
+
+    <div id="hasil" class="mt-4 text-center font-semibold"></div>
+  </div>
+
+  <script>
+    const daftarTerpilih = [
+      "Arga",
+      "Ken",
+      "Deka",
+      "Husen",
+      "Ahlan"
+    ];
+
+    function cekNama() {
+      const input = document.getElementById("namaInput").value.trim();
+      const hasil = document.getElementById("hasil");
+
+      if (!input) {
+        hasil.textContent = "Harap masukkan nama terlebih dahulu.";
+        hasil.className = "text-yellow-600 mt-4 text-center font-semibold";
+        return;
+      }
+
+      const cocok = daftarTerpilih.find(nama => nama.toLowerCase() === input.toLowerCase());
+
+      if (cocok) {
+        hasil.textContent = `🎉 Selamat, ${cocok} terpilih ke dalam kelompok prakarya!`;
+        hasil.className = "text-green-600 mt-4 text-center font-semibold";
+      } else {
+        hasil.textContent = `sorry kalo ${input} belum terpilih, jangan baper cik.`;
+        hasil.className = "text-red-600 mt-4 text-center font-semibold";
+      }
+    }
+  </script>
+</body>
+</html>
